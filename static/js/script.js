@@ -83,3 +83,34 @@ function fecharModal() {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
 }
+
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        fecharModal();
+    }
+}    
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        fecharModal();
+    }
+});
+let estrelasSelecionadas = 0;
+
+// Função para avaliar o livro
+function avaliar(n) {
+    estrelasSelecionadas = n;
+    const estrelas = document.querySelectorAll('.estrela');
+    const resultado = document.getElementById('resultado-avaliacao');
+
+    
+    estrelas.forEach((estrela, index) => {
+        if (index < n) {
+            estrela.classList.add('selecionada');
+        } else {
+            estrela.classList.remove('selecionada');
+        }
+    });
+
+    
+    resultado.innerText = `Você avaliou este livro com ${n} estrelas.`;
+}
